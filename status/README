@@ -1,0 +1,50 @@
+== Overview ==
+This agent enable you to query files at /var/status/*.status, which corrosponds to active processes.
+status files are to be written by procses, and are a simple key=value list, for example:
+
+	$ cat /var/status/13619.status 
+	binary=/usr/sbin/rsyslogd
+	pid=13148
+	time=1317738495
+	function=some_function
+	status=Some status
+	key_1=value
+	...
+	key_n=value
+
+The following keys are important:
+	pid : the process id
+	binary : the process binary (used to validate the the pid actually runs this binary)
+	time : unixtime of the update (seconds since 1/1/1970), this is used with the elapsed query (below).
+
+The rest of the keys are free key=value pairs which can be queries freely.
+
+== Usage == 
+	the status agent supports the following operations:
+		query	: returns matching processes (default operation)
+		kill	: kill matching processes
+
+Key based filtering:
+To queries all processes with rsyslog binary:
+	$ mco status query binary=rsyslog
+query is optional and can be omitted:
+	$ mco status binary=rsyslog
+
+you may combine multiple key-value pairs, and only processes matching all of them will be teturned:
+	$ mco status binary=rsyslog function=download
+
+Time based filtering:
+	$ mco status elapsed=10m
+will match all processes where the status file timestamp field 10 minutes old or older.
+supported format is n[s|m|h|d] for seconds,minutes,hours,days - where the default is seconds.
+
+You can of course combine time based filtering with key based filtering:
+	$ mco status elapsed=10m function=download
+will match all status files with function=download which are older than 10 minutes.
+
+== Installation ==
+	Copy the agent, application and util directories into mcollective plugins dir (/usr/share/mcollective/plugins/mcollective/ on debian)
+
+== Misc ==
+The included file scrub-status is used to delete dead status files (written by processes which are no longer running).
+While the agent ignores those files, its better to not let them pile up in /var/status, so its recommended to run scrub-status in a cron job.
