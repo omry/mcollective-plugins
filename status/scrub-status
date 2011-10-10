@@ -1,0 +1,13 @@
+#! /bin/bash
+FILES=$(ls /var/status/*.status 2> /dev/null)
+for f in $FILES
+do
+        FILE=$(cat $f)
+        PID=$(echo $FILE | sed 's/ /\n/g'  | grep pid |  cut -d'=' -f2)
+        BIN=$(echo $FILE | sed 's/ /\n/g'  | grep binary |  cut -d'=' -f2)
+        ACTUAL_BIN=$(readlink /proc/$PID/exe)
+        if [ "$ACTUAL_BIN" != "$BIN" ] ;
+        then
+                rm $f
+        fi
+done
