@@ -68,19 +68,23 @@ Special status filters:
    		mc = rpcclient("status")
 		mc.progress = false
 		mc.send(configuration[:cmd], configuration).each do |resp|
-			m = resp[:data][:matches]
-			if m and not m.size == 0
-				puts("#{resp[:sender]} : ")
-				m.each do |d|
-					puts("\t#{d["binary"]} #{d["pid"]}")
-					if options[:verbose]
-						d.each_pair do |k,v|
-							if not ["binary","pid"].include?(k)
-								puts("\t\t#{k}=#{v}")
+			if resp[:data] != nil
+				m = resp[:data][:matches]
+				if m and not m.size == 0
+					puts("#{resp[:sender]} : ")
+					m.each do |d|
+						puts("\t#{d["binary"]} #{d["pid"]}")
+						if options[:verbose]
+							d.each_pair do |k,v|
+								if not ["binary","pid"].include?(k)
+									puts("\t\t#{k}=#{v}")
+								end
 							end
 						end
 					end
 				end
+			else
+				logger.warn("Invalid response (no data)")
 			end
 		end
 		mc.disconnect
