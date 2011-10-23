@@ -84,7 +84,7 @@ Special status filters:
 					end
 				end
 			else
-				logger.warn("Invalid response (no data)")
+				puts("Invalid response (no data)")
 			end
 		end
 		mc.disconnect
