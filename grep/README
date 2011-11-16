@@ -1,0 +1,16 @@
+== Overview ==
+This agent enable to grep log and search log files on nodes
+
+== Usage == 
+To queries all processes with rsyslog binary:
+	$ mco grep FILE_NAME FILTER [-s SEARCH] [-n NUM_LINES]
+
+* Only lines matching the filter are returned.
+* The first line will match the (optional) search query
+* Only NUM_LINES will be returned (defualt 100 lines)
+
+
+
+== Installation ==
+	Copy the agent, application and util directories into mcollective plugins dir (/usr/share/mcollective/plugins/mcollective/ on debian)
+
