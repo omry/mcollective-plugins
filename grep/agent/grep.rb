@@ -31,7 +31,7 @@ module MCollective
 						lines = 100
 					end
 
-					cmd = "grep #{filter} #{file} | head -#{lines} | sed -n '/#{search}/,$p'"
+					cmd = "grep #{filter} #{file} | sed -n '/#{search}/,$p' | tail -#{lines}"
 					reply[:cmd] = cmd
 					reply[:text] = %x[#{cmd}].split("\n")
 				rescue Exception => e
