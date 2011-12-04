@@ -1,0 +1,12 @@
+== Overview ==
+Run various linux commands on nodes
+
+== Usage == 
+Supported commands:
+	Rebot (protected) : reboots a node
+	Uptime : returnis the output of the uptime command
+
+Protected commands will ask for verification if asked without any filters.
+
+== Installation ==
+	Copy the agent, application and util directories into mcollective plugins dir (/usr/share/mcollective/plugins/mcollective/ on debian)
