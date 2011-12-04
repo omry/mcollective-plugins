@@ -42,7 +42,6 @@ Special status filters:
 			elsif v =~ /^(.+?)=(.+)$/
 				configuration[:args] = [] unless configuration.include?(:args)
 				configuration[:args] << v
-				print "adding arg #{v}"
 			else
 				STDERR.puts("Could not parse --arg #{v}")
 			end
@@ -67,13 +66,16 @@ Special status filters:
 
    		mc = rpcclient("status")
 		mc.progress = false
+		now = Time.now.to_i
+
 		mc.send(configuration[:cmd], configuration).each do |resp|
 			if resp[:data] != nil
 				m = resp[:data][:matches]
 				if m and not m.size == 0
 					puts("#{resp[:sender]} : ")
 					m.each do |d|
-						puts("\t#{d["binary"]} #{d["pid"]}")
+						elapsed = now - d["time"].to_i
+						puts("\t#{d["binary"]} #{d["pid"]} (#{elapsed}s)")
 						if options[:verbose]
 							d.each_pair do |k,v|
 								if not ["binary","pid"].include?(k)

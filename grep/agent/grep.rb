@@ -1,4 +1,3 @@
-
 module MCollective
     module Agent
         class Grep<RPC::Agent
