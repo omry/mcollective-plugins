@@ -1,4 +1,4 @@
 This is my mcollective plugins repository
 	grep : grep files on nodes
-	misc : run misc commands (uptime, reobot..)
+	misc : run misc commands (uptime, reboot..)
 	status : queries files at /var/status/*.status (written by your processes to expose state)
