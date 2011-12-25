@@ -17,6 +17,18 @@ module MCollective
 				run("uptime")
             end
 
+			action "tcpdump" do
+				if request[:action] == "start"
+					file = "/tmp/tcp.dump"
+					if request[:file] 
+						file = request[:file]
+					end
+					run("tcpdump -w #{file}&")
+				elsif request[:action] == "stop"
+					run("killall tcpdump")
+				end
+            end
+
 			def run(cmd)
 				begin
 					reply[:cmd] = cmd

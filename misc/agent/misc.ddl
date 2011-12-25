@@ -10,5 +10,8 @@ metadata    :name        => "Misc commands",
 action "uptime", :description => "Node uptime" do
 end
 
-action "reboot", :description => "Reboto node" do
+action "reboot", :description => "Reboot node" do
+end
+
+action "tcpdump", :description => "Start/Stop tcpdump" do
 end
