@@ -1,21 +1,21 @@
 module MCollective
-    module Agent
-        class Misc<RPC::Agent
-            metadata    :name        => "Misc commands",
-                        :description => "Misc commands", 
-                        :author      => "Omry Yadan <omry@yadan.net>",
-                        :license     => "",
-                        :version     => "1.0",
-                        :url         => "?",
-                        :timeout     => 2
+	module Agent
+		class Misc<RPC::Agent
+			metadata    :name        => "Misc commands",
+				:description => "Misc commands", 
+				:author      => "Omry Yadan <omry@yadan.net>",
+				:license     => "",
+				:version     => "1.0",
+				:url         => "?",
+				:timeout     => 2
 
-            action "reboot" do
+			action "reboot" do
 				run("reboot")
-            end
+			end
 
-            action "uptime" do
+			action "uptime" do
 				run("uptime")
-            end
+			end
 
 			action "tcpdump" do
 				if request[:action] == "start"
@@ -27,7 +27,7 @@ module MCollective
 				elsif request[:action] == "stop"
 					run("killall tcpdump")
 				end
-            end
+			end
 
 			def run(cmd)
 				begin
@@ -39,6 +39,6 @@ module MCollective
 					raise
 				end
 			end
-        end
-    end
+		end
+	end
 end
