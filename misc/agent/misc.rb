@@ -29,6 +29,14 @@ module MCollective
 				end
 			end
 
+			action "postqueue" do
+				if request[:action] == "count"
+					run("postqueue -p | tail -n 1 | cut -d' ' -f5")
+				elsif request[:action] == "empty"
+					run("sudo postsuper -d ALL")
+				end
+			end
+
 			def run(cmd)
 				begin
 					reply[:cmd] = cmd

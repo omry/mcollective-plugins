@@ -15,3 +15,6 @@ end
 
 action "tcpdump", :description => "Start/Stop tcpdump" do
 end
+
+action "postqueue", :description => "Count/Empty postqueue" do
+end
