@@ -1,0 +1,18 @@
+== Overview ==
+Monit control agent
+
+== Usage == 
+Supported commands:
+	start     name|all - Start the specified sercice (all for all services)
+	stop      name|all - Stop the specified sercice (all for all services)
+	restart   name|all - Reload the specified sercice (all for all services) 
+	monitor   name|all - Monitor the specified sercice (all for all services)
+	unmonitor name|all - Unmonitor the specified sercice (all for all services)
+	status    [name]   - Returns full services status, or if name specified - only for it
+	summary   [name]   - Returns short services summary, or if name specified - only for it
+	validate           - Check all services and start if not running
+	reload             - Reinitialize monit
+
+== Installation ==
+	Copy the agent, application and util directories into mcollective plugins dir (/usr/share/mcollective/plugins/mcollective/ on debian)
+	Monit should be running and functional on the node
