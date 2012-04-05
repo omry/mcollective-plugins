@@ -4,9 +4,9 @@ module MCollective
 			metadata    :name        => "Misc commands",
 				:description => "Misc commands", 
 				:author      => "Omry Yadan <omry@yadan.net>",
-				:license     => "",
+				:license     => "BSD",
 				:version     => "1.0",
-				:url         => "?",
+				:url         => "https://github.com/omry/mcollective-plugins",
 				:timeout     => 2
 
 			action "reboot" do

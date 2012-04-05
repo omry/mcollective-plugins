@@ -1,9 +1,9 @@
 metadata    :name        => "Misc commands",
 			:description => "Misc commands",
 			:author      => "Omry Yadan <omry@yadan.net>",
-			:license     => "",
+			:license     => "https://github.com/omry/mcollective-plugins",
 			:version     => "1.0",
-			:url         => "?",
+			:url         => "BSD",
 			:timeout     => 2
 
 
