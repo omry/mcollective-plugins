@@ -3,8 +3,10 @@ Run various linux commands on nodes
 
 == Usage == 
 Supported commands:
-	Reboot (protected) : reboots a node
-	Uptime : returnis the output of the uptime command
+	reboot (protected) : reboots a node
+	uptime : returnis the output of the uptime command
+	postqueue : count or empty postfix mail queue
+	tcpdump : start/stop tcp dump on node
 
 Protected commands will ask for verification if asked without any filters.
 
