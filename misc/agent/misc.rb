@@ -4,9 +4,9 @@ module MCollective
 			metadata    :name        => "Misc commands",
 				:description => "Misc commands", 
 				:author      => "Omry Yadan <omry@yadan.net>",
-				:license     => "BSD",
+				:license     => "",
 				:version     => "1.0",
-				:url         => "https://github.com/omry/mcollective-plugins",
+				:url         => "?",
 				:timeout     => 2
 
 			action "reboot" do
@@ -31,16 +31,24 @@ module MCollective
 
 			action "postqueue" do
 				if request[:action] == "count"
-					run("postqueue -p | tail -n 1 | cut -d' ' -f5")
+					c=%x[postqueue -p | tail -n 1 | cut -d' ' -f5]
+					if c.strip.empty?
+						c="0"
+					end
+					run1("",c)
 				elsif request[:action] == "empty"
 					run("sudo postsuper -d ALL")
 				end
 			end
 
 			def run(cmd)
+				run1(cmd,%x[#{cmd}])
+			end
+
+			def run1(cmd,txt)
 				begin
 					reply[:cmd] = cmd
-					reply[:text] = %x[#{cmd}]
+					reply[:text] = txt
 				rescue Exception => e
 					logger.error(e)
 					logger.error(e.backtrace.join("\n\t"))
