@@ -5,7 +5,7 @@ module MCollective
                         :description => "Grep, search and crop log files", 
                         :author      => "Omry Yadan <omry@yadan.net>",
                         :license     => "BSD",
-                        :version     => "1.0",
+                        :version     => "1.1",
                         :url         => "?",
                         :timeout     => 2
 
@@ -30,7 +30,7 @@ module MCollective
 						lines = 100
 					end
 
-					cmd = "grep #{filter} #{file} | sed -n '/#{search}/,$p' | tail -#{lines}"
+					cmd = "zgrep #{filter} #{file} | sed -n '/#{search}/,$p' | tail -#{lines}"
 					reply[:cmd] = cmd
 					reply[:text] = %x[#{cmd}].split("\n")
 				rescue Exception => e
