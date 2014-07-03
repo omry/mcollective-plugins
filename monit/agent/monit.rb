@@ -54,7 +54,7 @@ module MCollective
         end
         name = nil
         res = {}
-        text.each {|line|
+        text.each_line {|line|
           line.strip!
           if line.size > 0
             r = line.match("(.*) *'(.*)'")
@@ -91,7 +91,7 @@ module MCollective
       def summary(name)
         text=%x[monit summary]
         res={}
-        text.each {|line|
+        text.each_line {|line|
           r=line.match("(.*) *'(.*)' *(.*)")
           if r != nil and r.size >= 4
             type = r[1].downcase.intern
