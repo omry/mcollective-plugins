@@ -12,6 +12,7 @@ action "status", :description => "Detailed services status" do
       :description => "Optional service name",
       :type        => :string,
       :validation  => '^.+$',
+      :maxlength   => 30,
       :optional    => true
 end
 
@@ -21,6 +22,7 @@ action "summary", :description => "Summary of services status" do
       :description => "Optional service name",
       :type        => :string,
       :validation  => '^.+$',
+      :maxlength   => 30,
       :optional    => true
 end
 
@@ -30,6 +32,7 @@ action "start", :description => "Start controlled services" do
       :description => "Service name (or 'all')",
       :type        => :string,
       :validation  => '^.+$',
+      :maxlength   => 30,
       :optional    => false
 end
 
@@ -39,6 +42,7 @@ action "stop", :description => "Stop controlled services" do
       :description => "Service name (or 'all')",
       :type        => :string,
       :validation  => '^.+$',
+      :maxlength   => 30,
       :optional    => false
 end
 
@@ -48,6 +52,7 @@ action "restart", :description => "Restart controlled services" do
       :description => "Service name (or 'all')",
       :type        => :string,
       :validation  => '^.+$',
+      :maxlength   => 30,
       :optional    => false
 end
 
@@ -57,6 +62,7 @@ action "monitor", :description => "Monitor controlled services" do
       :description => "Service name (or 'all')",
       :type        => :string,
       :validation  => '^.+$',
+      :maxlength   => 30,
       :optional    => false
 end
 
@@ -66,5 +72,6 @@ action "unmonitor", :description => "Unmonitor controlled services" do
       :description => "Service name (or 'all')",
       :type        => :string,
       :validation  => '^.+$',
+      :maxlength   => 30,
       :optional    => false
 end
